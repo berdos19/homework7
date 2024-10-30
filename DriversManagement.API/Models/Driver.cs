@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace DriversManagement.API.Models;
 
@@ -18,9 +17,32 @@ public class Driver
     [NotMapped] // not add to database
     public string FullName => FirstName + " " + LastName;
 
-    public string Category { get; set; }
+    public VehicleCategory Category { get; set; }
     
     public int Salary { get; set; }
     public DateTime DateOfBirth { get; set; }
     public string? LicenceNumber { get; set; }
 }
+
+
+
+
+
+
+/*class Book
+{
+    public ICollection<Author> Author { get; set; }
+}
+class Author
+{
+    public ICollection<Book> Book { get; set; }
+}*/
+
+
+
+
+
+
+
+
+
