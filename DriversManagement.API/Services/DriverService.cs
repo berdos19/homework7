@@ -1,6 +1,5 @@
 ﻿using DriversManagement.API.Interfaces;
 using DriversManagement.API.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DriversManagement.API.Services;
@@ -65,6 +64,7 @@ public class DriverService : IDriverService
     public Task<ICollection<Vehicle>> FilterVehicles(string? model, int? year, string? driverFirstName)
     {
         // TODO
+        throw new NotImplementedException();
     }
 }
 

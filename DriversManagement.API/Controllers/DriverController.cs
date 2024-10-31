@@ -1,4 +1,5 @@
-﻿using DriversManagement.API.DTOs;
+﻿using AutoMapper;
+using DriversManagement.API.DTOs;
 using DriversManagement.API.Interfaces;
 using DriversManagement.API.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace DriversManagement.API.Controllers;
 public class DriverController : ControllerBase
 {
     private readonly IDriverService _driverService;
+    private readonly IMapper _mapper;
 
-    public DriverController(IDriverService driverService)
+    public DriverController(IDriverService driverService, IMapper mapper)
     {
         _driverService = driverService;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -31,12 +34,7 @@ public class DriverController : ControllerBase
             LicenceNumber = licenceNumber,
             SearchContext = searchContext
         };
-        return Ok((await _driverService.GetAllDrivers(filter, skip, take))
-            .Select(x => new DriverDTO()
-            {
-                FirstName = x.FirstName,
-                LastName = x.LastName,
-            }));
+        return Ok(await _driverService.GetAllDrivers(filter, skip, take));
     }
 
     [HttpGet("vehicles")]
@@ -49,8 +47,9 @@ public class DriverController : ControllerBase
     }
     
     [HttpPost]
-    public ActionResult AddDriver(DriverDTO driver)
+    public ActionResult<Driver> AddDriver(DriverDTO driverDTO)
     {
-        return Ok();
+        var driver = _mapper.Map<Driver>(driverDTO);
+        return Ok(driver);
     }
 }

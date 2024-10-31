@@ -2,9 +2,9 @@
 
 public class DriverDTO
 {
-    public string FirstName { get; set; }
+    public string Name { get; set; }
     public string LastName { get; set; }
-    public string Category { get; set; }
+    public int CategoryId { get; set; }
     public int Salary { get; set; }
     public DateTime DateOfBirth { get; set; }
     public string? LicenceNumber { get; set; }

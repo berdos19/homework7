@@ -1,3 +1,4 @@
+using AutoMapper;
 using DriversManagement.API.Data;
 using DriversManagement.API.Interfaces;
 using DriversManagement.API.Services;
@@ -9,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DriversContext>(opt => 
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Local")));
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IDriverService, DriverService>();
