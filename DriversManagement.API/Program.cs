@@ -8,11 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<DriversContext>(opt => 
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("Local")));
+builder.Services.AddDbContext<DriversContext>(opt =>
+    opt.UseMySql(builder.Configuration.GetConnectionString("Local"),
+        new MySqlServerVersion(new Version(10, 5, 9))));
 
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IDriverService, DriverService>();
 

@@ -10,4 +10,5 @@ public class DriversContext : DbContext
     }
 
     public DbSet<Driver> Drivers { get; set; }
+    public DbSet<Vehicle> Vehicles { get; set; }
 }
